@@ -218,152 +218,128 @@ export default function AdminPage() {
 
   if (!stats) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(90deg, #181e5a 0%, #2e3192 50%, #6dd5fa 100%)' }}>
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading admin dashboard...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#7ffcff] mx-auto"></div>
+          <p className="mt-4 text-[#7ffcff] font-body">Loading admin dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ background: 'linear-gradient(90deg, #181e5a 0%, #2e3192 50%, #6dd5fa 100%)' }}>
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-          <p className="mt-2 text-gray-600">Monitor user activity and manage your application</p>
+      <div className="bg-transparent py-6">
+        <div className="max-w-7xl mx-auto px-4">
+          <h1 className="text-4xl font-title text-[#7ffcff] drop-shadow-[0_4px_24px_rgba(255,255,255,0.7)]">Admin Dashboard</h1>
+          <p className="mt-2 text-white font-body">Monitor user activity and manage your application</p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-[#2e3192]/80 rounded-2xl white-shadow p-6">
             <div className="flex items-center">
-              <div className="p-3 rounded-full bg-blue-100 text-blue-600">
+              <div className="p-3 rounded-full bg-[#7ffcff]/20 text-[#7ffcff] white-shadow">
                 <Users className="w-6 h-6" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Total Users</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.totalUsers}</p>
+                <p className="text-sm font-body text-[#7ffcff]">Total Users</p>
+                <p className="text-2xl font-title text-white">{stats.totalUsers}</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-[#2e3192]/80 rounded-2xl white-shadow p-6">
             <div className="flex items-center">
-              <div className="p-3 rounded-full bg-green-100 text-green-600">
+              <div className="p-3 rounded-full bg-[#7ffcff]/20 text-[#7ffcff] white-shadow">
                 <Activity className="w-6 h-6" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Active Users (7 days)</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.activeUsers}</p>
+                <p className="text-sm font-body text-[#7ffcff]">Active Users (7 days)</p>
+                <p className="text-2xl font-title text-white">{stats.activeUsers}</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Users Section */}
-        <div className="bg-white rounded-lg shadow">
-          <div className="px-6 py-4 border-b border-gray-200">
+        <div className="bg-[#181e5a]/80 rounded-2xl white-shadow">
+          <div className="px-6 py-4 border-b border-[#7ffcff]/30">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 sm:mb-0">Users</h2>
+              <h2 className="text-xl font-title text-[#7ffcff] mb-4 sm:mb-0">Users</h2>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Search className="absolute left-0.5 top-1/2 transform -translate-y-1/2 text-[#7ffcff] w-4 h-4" />
                 <input
                   type="text"
                   placeholder="Search by email or name..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="pl-10 pr-4 py-2 border border-[#7ffcff]/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7ffcff] focus:border-transparent font-body bg-white/90 text-[#181e5a]"
                 />
               </div>
             </div>
           </div>
 
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-[#7ffcff]/20">
+              <thead className="bg-[#2e3192]/60">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    User
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Email
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Joined
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Chats
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Last Activity
-                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-title text-[#7ffcff] uppercase tracking-wider">User</th>
+                  <th className="px-6 py-3 text-left text-xs font-title text-[#7ffcff] uppercase tracking-wider">Email</th>
+                  <th className="px-6 py-3 text-left text-xs font-title text-[#7ffcff] uppercase tracking-wider">Joined</th>
+                  <th className="px-6 py-3 text-left text-xs font-title text-[#7ffcff] uppercase tracking-wider">Chats</th>
+                  <th className="px-6 py-3 text-left text-xs font-title text-[#7ffcff] uppercase tracking-wider">Last Activity</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-transparent divide-y divide-[#7ffcff]/10">
                 {loading ? (
                   <tr>
                     <td colSpan={5} className="px-6 py-4 text-center">
-                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#7ffcff] mx-auto"></div>
                     </td>
                   </tr>
                 ) : users.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
-                      No users found
-                    </td>
+                    <td colSpan={5} className="px-6 py-4 text-center text-[#7ffcff] font-body">No users found</td>
                   </tr>
                 ) : (
                   users.map((user) => (
                     <tr 
                       key={user.id} 
-                      className="hover:bg-gray-50 cursor-pointer transition-colors duration-150"
+                      className="hover:bg-[#7ffcff]/10 cursor-pointer transition-colors duration-150"
                       onClick={() => handleUserClick(user)}
                     >
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
                             {user.avatar_url ? (
-                              <img
-                                className="h-10 w-10 rounded-full"
-                                src={user.avatar_url}
-                                alt={user.name || 'User'}
-                              />
+                              <img className="h-10 w-10 rounded-full white-shadow" src={user.avatar_url} alt={user.name || 'User'} />
                             ) : (
-                              <div className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
-                                <User className="w-5 h-5 text-gray-600" />
+                              <div className="h-10 w-10 rounded-full bg-[#7ffcff]/20 flex items-center justify-center white-shadow">
+                                <User className="w-5 h-5 text-[#7ffcff]" />
                               </div>
                             )}
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900">
-                              {user.name || 'No name'}
-                            </div>
-                            <div className="text-sm text-gray-500">ID: {user.id}</div>
+                            <div className="text-sm font-title text-white">{user.name || 'No name'}</div>
+                            <div className="text-sm text-[#7ffcff] font-body truncate w-32" title={`ID: ${user.id}`}>ID: {user.id}</div>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <Mail className="w-4 h-4 text-gray-400 mr-2" />
-                          <span className="text-sm text-gray-900">{user.email}</span>
+                          <Mail className="w-4 h-4 text-[#7ffcff] mr-2" />
+                          <span className="text-sm text-white font-body truncate w-40" title={user.email}>{user.email}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {formatDate(user.created_at)}
-                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-[#7ffcff] font-body">{formatDate(user.created_at)}</td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                          {user.chat_count}
-                        </span>
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-title bg-[#7ffcff]/20 text-[#7ffcff]">{user.chat_count}</span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {user.last_activity ? formatDate(user.last_activity) : 'Never'}
-                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-[#7ffcff] font-body">{user.last_activity ? formatDate(user.last_activity) : 'Never'}</td>
                     </tr>
                   ))
                 )}
@@ -372,9 +348,9 @@ export default function AdminPage() {
           </div>
 
           {/* Pagination */}
-          <div className="px-6 py-4 border-t border-gray-200">
+          <div className="px-6 py-4 border-t border-[#7ffcff]/30">
             <div className="flex items-center justify-between">
-              <div className="text-sm text-gray-700">
+              <div className="text-sm text-white font-body">
                 Showing {((currentPage - 1) * usersPerPage) + 1} to{' '}
                 {Math.min(currentPage * usersPerPage, totalCount)} of {totalCount} users
               </div>
@@ -382,14 +358,14 @@ export default function AdminPage() {
                 <button
                   onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                   disabled={currentPage === 1}
-                  className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-3 py-1 text-sm border border-[#7ffcff]/40 rounded-md hover:bg-[#7ffcff]/10 disabled:opacity-50 disabled:cursor-not-allowed white-shadow font-title"
                 >
                   Previous
                 </button>
                 <button
                   onClick={() => setCurrentPage(currentPage + 1)}
                   disabled={!hasMore}
-                  className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-3 py-1 text-sm border border-[#7ffcff]/40 rounded-md hover:bg-[#7ffcff]/10 disabled:opacity-50 disabled:cursor-not-allowed white-shadow font-title"
                 >
                   Next
                 </button>
@@ -402,12 +378,12 @@ export default function AdminPage() {
       {/* User Details Modal */}
       {showUserModal && selectedUser && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-gray-900">User Financial Information</h2>
+          <div className="bg-[#181e5a] rounded-2xl white-shadow max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="px-6 py-4 border-b border-[#7ffcff]/30 flex justify-between items-center">
+              <h2 className="text-xl font-title text-[#7ffcff]">User Financial Information</h2>
               <button
                 onClick={() => setShowUserModal(false)}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-[#7ffcff] hover:text-white transition-colors font-title"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -416,37 +392,29 @@ export default function AdminPage() {
             <div className="p-6">
               {loadingUserDetails ? (
                 <div className="text-center py-8">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
-                  <p className="mt-2 text-gray-600">Loading user details...</p>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#7ffcff] mx-auto"></div>
+                  <p className="mt-2 text-[#7ffcff] font-body">Loading user details...</p>
                 </div>
               ) : (
                 <div className="space-y-6">
                   {/* Debug Info */}
-                  <div className="text-xs text-gray-400">
-                    Debug: User ID = {selectedUser.id || 'No ID'}
-                  </div>
+                  <div className="text-xs text-[#7ffcff] font-body">Debug: User ID = {selectedUser.id || 'No ID'}</div>
 
                   {/* Basic Info */}
                   <div className="flex items-center space-x-4">
                     <div className="flex-shrink-0 h-16 w-16">
                       {selectedUser.avatar_url ? (
-                        <img
-                          className="h-16 w-16 rounded-full"
-                          src={selectedUser.avatar_url}
-                          alt={selectedUser.name || 'User'}
-                        />
+                        <img className="h-16 w-16 rounded-full white-shadow" src={selectedUser.avatar_url} alt={selectedUser.name || 'User'} />
                       ) : (
-                        <div className="h-16 w-16 rounded-full bg-gray-300 flex items-center justify-center">
-                          <User className="w-8 h-8 text-gray-600" />
+                        <div className="h-16 w-16 rounded-full bg-[#7ffcff]/20 flex items-center justify-center white-shadow">
+                          <User className="w-8 h-8 text-[#7ffcff]" />
                         </div>
                       )}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-medium text-gray-900">
-                        {selectedUser.name || 'No name'}
-                      </h3>
-                      <p className="text-sm text-gray-500">{selectedUser.email}</p>
-                      <p className="text-xs text-gray-400">ID: {selectedUser.id}</p>
+                      <h3 className="text-lg font-title text-white">{selectedUser.name || 'No name'}</h3>
+                      <p className="text-sm text-[#7ffcff] font-body truncate w-40" title={selectedUser.email}>{selectedUser.email}</p>
+                      <p className="text-xs text-[#7ffcff] font-body">ID: {selectedUser.id}</p>
                     </div>
                     <div className="flex-shrink-0">
                       <button
@@ -463,7 +431,7 @@ export default function AdminPage() {
                           }
                         }}
                         disabled={extractingFinancialData}
-                        className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        className="flex items-center space-x-2 px-4 py-2 bg-[#7ffcff] text-[#181e5a] rounded-lg hover:bg-[#2e3192] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors white-shadow font-title"
                       >
                         {extractingFinancialData ? (
                           <>
@@ -487,7 +455,7 @@ export default function AdminPage() {
                         ? 'bg-green-50 border border-green-200 text-green-800' 
                         : 'bg-red-50 border border-red-200 text-red-800'
                     }`}>
-                      <p className="text-sm">{extractionMessage.text}</p>
+                      <p className="text-sm font-body">{extractionMessage.text}</p>
                     </div>
                   )}
 
@@ -495,91 +463,72 @@ export default function AdminPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                       <div className="flex items-center space-x-3">
-                        <UserCheck className="w-5 h-5 text-gray-400" />
+                        <UserCheck className="w-5 h-5 text-[#7ffcff]" />
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Gender</p>
-                          <p className="text-sm text-gray-900">
-                            {selectedUser.gender || 'Not specified'}
-                          </p>
+                          <p className="text-sm font-title text-[#7ffcff]">Gender</p>
+                          <p className="text-sm text-white font-body">{selectedUser.gender || 'Not specified'}</p>
                         </div>
                       </div>
 
                       <div className="flex items-center space-x-3">
-                        <CalendarIcon className="w-5 h-5 text-gray-400" />
+                        <CalendarIcon className="w-5 h-5 text-[#7ffcff]" />
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Birthdate</p>
-                          <p className="text-sm text-gray-900">
-                            {selectedUser.birthdate 
-                              ? new Date(selectedUser.birthdate).toLocaleDateString()
-                              : 'Not specified'
-                            }
-                          </p>
+                          <p className="text-sm font-title text-[#7ffcff]">Birthdate</p>
+                          <p className="text-sm text-white font-body">{selectedUser.birthdate ? new Date(selectedUser.birthdate).toLocaleDateString() : 'Not specified'}</p>
                         </div>
                       </div>
 
                       <div className="flex items-center space-x-3">
-                        <DollarSign className="w-5 h-5 text-gray-400" />
+                        <DollarSign className="w-5 h-5 text-[#7ffcff]" />
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Estimated Salary</p>
-                          <p className="text-sm text-gray-900">
-                            {formatCurrency(selectedUser.estimated_salary ?? null)}
-                          </p>
+                          <p className="text-sm font-title text-[#7ffcff]">Estimated Salary</p>
+                          <p className="text-sm text-white font-body">{formatCurrency(selectedUser.estimated_salary ?? null)}</p>
                         </div>
                       </div>
 
                       <div className="flex items-center space-x-3">
-                        <MapPin className="w-5 h-5 text-gray-400" />
+                        <MapPin className="w-5 h-5 text-[#7ffcff]" />
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Country</p>
-                          <p className="text-sm text-gray-900">
-                            {selectedUser.country || 'Not specified'}
-                          </p>
+                          <p className="text-sm font-title text-[#7ffcff]">Country</p>
+                          <p className="text-sm text-white font-body">{selectedUser.country || 'Not specified'}</p>
                         </div>
                       </div>
                     </div>
 
                     <div className="space-y-4">
                       <div className="flex items-center space-x-3">
-                        <MapPin className="w-5 h-5 text-gray-400" />
+                        <MapPin className="w-5 h-5 text-[#7ffcff]" />
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Domicile</p>
-                          <p className="text-sm text-gray-900">
-                            {selectedUser.domicile || 'Not specified'}
-                          </p>
+                          <p className="text-sm font-title text-[#7ffcff]">Domicile</p>
+                          <p className="text-sm text-white font-body">{selectedUser.domicile || 'Not specified'}</p>
                         </div>
                       </div>
 
                       <div className="flex items-center space-x-3">
-                        <div className="w-5 h-5 text-gray-400 flex items-center justify-center">
+                        <div className="w-5 h-5 text-[#7ffcff] flex items-center justify-center">
                           <span className="text-lg">💰</span>
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Active Loans</p>
-                          <p className="text-sm text-gray-900">
-                            {formatCurrency(selectedUser.active_loan ?? null)}
-                          </p>
+                          <p className="text-sm font-title text-[#7ffcff]">Active Loans</p>
+                          <p className="text-sm text-white font-body">{formatCurrency(selectedUser.active_loan ?? null)}</p>
                         </div>
                       </div>
 
                       <div className="flex items-center space-x-3">
-                        <div className="w-5 h-5 text-gray-400 flex items-center justify-center">
+                        <div className="w-5 h-5 text-[#7ffcff] flex items-center justify-center">
                           <span className="text-lg">🏦</span>
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-gray-500">BI Checking Status</p>
-                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getBIStatusColor(selectedUser.bi_checking_status ?? null)}`}>
-                            {selectedUser.bi_checking_status || 'Not checked'}
-                          </span>
+                          <p className="text-sm font-title text-[#7ffcff]">BI Checking Status</p>
+                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-title ${getBIStatusColor(selectedUser.bi_checking_status ?? null)}`}>{selectedUser.bi_checking_status || 'Not checked'}</span>
                         </div>
                       </div>
 
                       <div className="flex items-center space-x-3">
-                        <Calendar className="w-5 h-5 text-gray-400" />
+                        <Calendar className="w-5 h-5 text-[#7ffcff]" />
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Member Since</p>
-                          <p className="text-sm text-gray-900">
-                            {formatDate(selectedUser.user_created_at)}
-                          </p>
+                          <p className="text-sm font-title text-[#7ffcff]">Member Since</p>
+                          <p className="text-sm text-white font-body">{formatDate(selectedUser.user_created_at)}</p>
                         </div>
                       </div>
                     </div>
@@ -593,9 +542,7 @@ export default function AdminPage() {
                           <span className="text-yellow-400">⚠️</span>
                         </div>
                         <div className="ml-3">
-                          <p className="text-sm text-yellow-800">
-                            No financial information has been provided by this user yet. Click "Extract Financial Data" to analyze their chat history.
-                          </p>
+                          <p className="text-sm text-yellow-800 font-body">No financial information has been provided by this user yet. Click "Extract Financial Data" to analyze their chat history.</p>
                         </div>
                       </div>
                     </div>
@@ -604,10 +551,10 @@ export default function AdminPage() {
               )}
             </div>
 
-            <div className="px-6 py-4 border-t border-gray-200 flex justify-end">
+            <div className="px-6 py-4 border-t border-[#7ffcff]/30 flex justify-end">
               <button
                 onClick={() => setShowUserModal(false)}
-                className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                className="px-4 py-2 bg-[#7ffcff] text-[#181e5a] rounded-lg hover:bg-[#2e3192] hover:text-white transition-colors white-shadow font-title"
               >
                 Close
               </button>

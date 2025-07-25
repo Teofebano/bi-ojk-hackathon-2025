@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, LogOut, ChevronDown, Plus } from 'lucide-react';
+import { Send, Bot, User, LogOut, ChevronDown, Plus, ChevronRight, MessageSquare } from 'lucide-react';
 import { AuthProvider, useAuth } from './FirebaseAuthContext';
 
 interface Message {
@@ -86,6 +86,7 @@ function ChatPageInner() {
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [messageOffset, setMessageOffset] = useState(0);
   const [hasMoreMessages, setHasMoreMessages] = useState(true);
+  const [isChatHistoryCollapsed, setIsChatHistoryCollapsed] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Fetch all chats for the user
@@ -249,34 +250,70 @@ function ChatPageInner() {
 
       <div className="max-w-4xl mx-auto p-4 flex flex-col md:flex-row gap-6 w-full">
         {/* Sidebar: Chat History */}
-        <div className="w-full md:w-1/4 bg-[#2e3192]/80 rounded-2xl white-shadow p-4 mb-4 md:mb-0 flex flex-col">
+        <div className={`${isChatHistoryCollapsed ? 'w-auto' : 'w-full md:w-1/4'} bg-[#2e3192]/80 rounded-2xl white-shadow p-4 mb-4 md:mb-0 flex flex-col transition-all duration-300 ease-in-out`}>
           <div className="flex justify-between items-center mb-4">
-            <span className="font-title text-xl text-[#7ffcff]">Chat History</span>
-            <button 
-              onClick={handleNewChat} 
-              className="flex items-center space-x-1 px-3 py-1.5 bg-blue-500 text-white text-xs font-medium rounded-lg hover:bg-blue-600 transition-colors duration-200 white-shadow font-body"
-            >
-              <Plus className="w-3 h-3" />
-              <span>New Chat</span>
-            </button>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => setIsChatHistoryCollapsed(!isChatHistoryCollapsed)}
+                className="flex items-center space-x-1 text-[#7ffcff] hover:text-white transition-colors duration-200"
+              >
+                {isChatHistoryCollapsed ? (
+                  <ChevronRight className="w-5 h-5" />
+                ) : (
+                  <ChevronDown className="w-5 h-5" />
+                )}
+                {isChatHistoryCollapsed ? (
+                  <MessageSquare className="w-5 h-5" />
+                ) : (
+                  <span className="font-title text-xl text-[#7ffcff]">Chat History</span>
+                )}
+              </button>
+            </div>
+            {!isChatHistoryCollapsed && (
+              <button 
+                onClick={handleNewChat} 
+                className="flex items-center space-x-1 px-3 py-1.5 bg-blue-500 text-white text-xs font-medium rounded-lg hover:bg-blue-600 transition-colors duration-200 white-shadow font-body"
+              >
+                <Plus className="w-3 h-3" />
+                <span>New Chat</span>
+              </button>
+            )}
           </div>
-          {loadingChats ? (
-            <div className="text-center text-white font-body">Loading...</div>
-          ) : (
-            <ul className="space-y-2">
-              {chats.length === 0 && <li className="text-white text-sm font-body">No chats yet</li>}
-              {chats.map(chat => (
-                <li key={chat.id}>
-                  <button
-                    className={`w-full text-left px-3 py-2 rounded-lg font-body text-white ${chatId === chat.id.toString() ? 'bg-[#7ffcff]/20 font-semibold' : 'hover:bg-[#7ffcff]/10'}`}
-                    onClick={() => handleSelectChat(chat.id)}
-                  >
-                    Chat #{chat.id}<br />
-                    <span className="text-xs text-[#7ffcff]">{new Date(chat.created_at).toLocaleString()}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
+          
+          {!isChatHistoryCollapsed && (
+            <div className="transition-all duration-300 ease-in-out">
+              {loadingChats ? (
+                <div className="text-center text-white font-body">Loading...</div>
+              ) : (
+                <ul className="space-y-2">
+                  {chats.length === 0 && <li className="text-white text-sm font-body">No chats yet</li>}
+                  {chats.map(chat => (
+                    <li key={chat.id}>
+                      <button
+                        className={`w-full text-left px-3 py-2 rounded-lg font-body text-white ${chatId === chat.id.toString() ? 'bg-[#7ffcff]/20 font-semibold' : 'hover:bg-[#7ffcff]/10'}`}
+                        onClick={() => handleSelectChat(chat.id)}
+                      >
+                        Chat #{chat.id}<br />
+                        <span className="text-xs text-[#7ffcff]">{new Date(chat.created_at).toLocaleString()}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+          
+          {/* Collapsed State - New Chat Button */}
+          {isChatHistoryCollapsed && (
+            <div className="mt-2">
+              <button 
+                onClick={handleNewChat} 
+                className="flex items-center justify-center w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 white-shadow"
+                title="New Chat"
+              >
+                <Plus className="w-4 h-4" />
+              </button>
+            </div>
           )}
         </div>
 
